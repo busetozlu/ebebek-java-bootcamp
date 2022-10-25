@@ -5,17 +5,18 @@ public class Employee {
     int hireYear;
     double taxAmount;
     double bonusAmount;
-    double addBonus;
     double workTime;
     double salaryIncrease;
     double totalSalary;
+    double baseSalary;
+    int currentYear=2021;
 
     Employee(String name, double salary,int workHours,int hireYear){
         this.name=name;
         this.salary=salary;
         this.workHours=workHours;
         this.hireYear=hireYear;
-        print();
+        this.baseSalary=salary;
     }
     double tax(){
         if(this.salary<1000){
@@ -29,44 +30,42 @@ public class Employee {
     }
     double bonus(){
         if(this.workHours>40){
-            bonusAmount=this.workHours-40.0;
-            addBonus=bonusAmount*30.0;
-            salary+=addBonus;
-            return addBonus;
+            bonusAmount=(this.workHours-40)*30;
+            salary+=bonusAmount;
+            return bonusAmount;
         }else {
             return 0;
         }
     }
     double raiseSalary(){
-        workTime=2021-this.hireYear;
-        if (workTime<10){
-            salaryIncrease=salary*0.05;
+        workTime=currentYear-this.hireYear;
+        if (workTime>20) {
+            salaryIncrease=baseSalary*0.15;
             totalSalary=salary+salaryIncrease;
             return salaryIncrease;
-        } else if (workTime>9 && workTime<20) {
-            salaryIncrease=salary*0.10;
+         }else if (workTime>9 && workTime<20) {
+            salaryIncrease = baseSalary * 0.10;
+            totalSalary = salary + salaryIncrease;
+            return salaryIncrease;
+        }else if (workTime<10){
+            salaryIncrease=baseSalary*0.05;
             totalSalary=salary+salaryIncrease;
             return salaryIncrease;
-        }else if (workTime>19) {
-            salaryIncrease=salary*0.15;
-            totalSalary=salary+salaryIncrease;
-            return salaryIncrease;
-        } else {
+        }  else {
             return 0;
         }
 
     }
-
-    void print(){
-        System.out.println("Adı : "+this.name);
-        System.out.println("Maaşı : "+this.salary);
-        System.out.println("Çalışma Saati : "+this.workHours);
-        System.out.println("Başlangıç Yılı : "+this.hireYear);
-        System.out.println("Vergi : "+ tax());
-        System.out.println("Bonus : "+ bonus());
-        System.out.println("Maaş Artışı : "+ raiseSalary());
-        System.out.println("Vergi ve Bonuslar ile birlikte maaş : "+this.salary);
-        System.out.println("Toplam Maaş : "+this.totalSalary);
+    public String toString(){
+        return "Adı : "+this.name+"\n"
+                +"Maaşı : "+this.salary+"\n"
+                +"Çalışma Saati : "+this.workHours+"\n"
+                +"Başlangıç Yılı : "+this.hireYear+"\n"
+                +"Vergi : "+ tax()+"\n"
+                +"Bonus : "+ bonus()+"\n"
+                +"Maaş Artışı : "+ raiseSalary()+"\n"
+                +"Vergi ve Bonuslar ile birlikte maaş : "+this.salary+"\n"
+                +"Toplam Maaş : "+this.totalSalary;
     }
 
 }
