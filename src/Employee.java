@@ -51,10 +51,9 @@ public class Employee {
             salaryIncrease=baseSalary*0.05;
             totalSalary=salary+salaryIncrease;
             return salaryIncrease;
-        }  else {
+        } else {
             return 0;
         }
-
     }
     public String toString(){
         return "Adı : "+this.name+"\n"
@@ -67,5 +66,4 @@ public class Employee {
                 +"Vergi ve Bonuslar ile birlikte maaş : "+this.salary+"\n"
                 +"Toplam Maaş : "+this.totalSalary;
     }
-
 }
